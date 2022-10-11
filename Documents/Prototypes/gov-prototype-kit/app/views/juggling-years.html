@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Your juggling experience</h1>
+
+      <form class="form" action="/task-list" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  idPrefix: "how-many-years",
+  name: "how-many-years",
+  fieldset: {
+    legend: {
+      text: "How many years have you been juggling?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "3 or more years",
+      text: "3 or more years",
+      checked: checked("how-many-years", "3 or more years")
+    },
+    {
+      value: "1 or 2 years",
+      text: "1 or 2 years",
+      checked: checked("how-many-years", "1 or 2 years")
+    },
+    {
+      value: "1 year or less",
+      text: "1 year or less",
+      checked: checked("how-many-years", "1 year or less")
+    }
+  ]
+}) }}
+        <input type="hidden" name="years-section" value="complete">
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

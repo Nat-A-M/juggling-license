@@ -1,0 +1,139 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Home – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Give feedback
+        <!-- <span class="govuk-caption-xl">{{releaseVersion}}</span>
+      </h1>{{releaseVersion | log }} -->
+
+<!-- Report a problem -->
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+    {{ govukRadios({
+    idPrefix: "report-a-problem",
+    name: "report-a-problem",
+    fieldset: {
+    legend: {
+    text: "Do you need to report a problem, or request suport?",
+    isPageHeading: true,
+    classes: "govuk-fieldset__legend--m"
+    }
+    },
+    items: [
+    {
+    value: "Yes",
+    text: "Yes",
+    checked: checked("report-a-problem", "Yes")
+    },
+    {
+    value: "No",
+    text: "No",
+    checked: checked("report-a-problem", "No")
+    }
+    ]
+    }) }}
+
+<!-- What did you come to do section -->
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+  {{ govukRadios({
+  idPrefix: "what-to-do",
+  name: "what-to-do",
+  fieldset: {
+  legend: {
+  text: "What did you come to the juggling license service to do?",
+  isPageHeading: true,
+  classes: "govuk-fieldset__legend--m"
+  }
+  },
+  items: [
+  {
+  value: "Apply for a juggling license",
+  text: "Apply for a juggling license",
+  checked: checked("what-to-do", "Apply for a juggling license")
+  },
+  {
+  value: "Something else",
+  text: "Someting else",
+  checked: checked("what-to-do", "Something else")
+  }
+  ]
+  }) }}
+
+<!-- Provide more details -->
+  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  label: {
+    text: "Can you provide more detail?",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+  }
+
+}) }}
+
+
+<!-- participate in research -->
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+idPrefix: "participate-in-research",
+name: "participate-in-research",
+fieldset: {
+legend: {
+text: "Would you like to participate in our research?",
+isPageHeading: true,
+classes: "govuk-fieldset__legend--m"
+}
+},
+items: [
+{
+value: "Yes",
+text: "Yes",
+checked: checked("participate-in-research", "Yes")
+},
+{
+value: "No",
+text: "No",
+checked: checked("participate-in-research", "No")
+}
+]
+}) }}
+
+<!-- submit feedback btn -->
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Submit feedback"
+}) }}
+
+
+
+      <h2 class="govuk-heading-m">Examples and documentation</h2>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="/docs/tutorials-and-examples">Tutorials and templates</a>
+        </li>
+        <li>
+          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}
